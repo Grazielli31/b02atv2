@@ -1,0 +1,37 @@
+package atvAvali02b2;
+
+public class Reserva {
+    private String nomeHospede;
+    private String dataCheckIn;
+    private String dataCheckOut;
+    private int numeroQuartos;
+    private int tipoQuarto;
+
+    public Reserva(String nomeHospede, String dataCheckIn, String dataCheckOut, int numeroQuartos, int tipoQuarto) {
+        this.nomeHospede = nomeHospede;
+        this.dataCheckIn = dataCheckIn;
+        this.dataCheckOut = dataCheckOut;
+        this.numeroQuartos = numeroQuartos;
+        this.tipoQuarto = tipoQuarto;
+    }
+
+    public String getNomeHospede() {
+        return nomeHospede;
+    }
+
+    public String getDataCheckIn() {
+        return dataCheckIn;
+    }
+
+    public String getDataCheckOut() {
+        return dataCheckOut;
+    }
+
+    public int getNumeroQuartos() {
+        return numeroQuartos;
+    }
+
+    public int getTipoQuarto() {
+        return tipoQuarto;
+    }
+}
