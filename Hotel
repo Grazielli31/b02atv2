@@ -1,0 +1,77 @@
+package atvAvali02b2;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Hotel {
+    private List<Quarto> quartos;
+    private List<Reserva> reservas;
+
+    public Hotel() {
+        quartos = new ArrayList<>();
+        reservas = new ArrayList<>();
+    }
+
+    public void cadastrarQuarto(Quarto quarto) {
+        quartos.add(quarto);
+    }
+
+    public void cadastrarReserva(Reserva reserva) {
+        reservas.add(reserva);
+        atualizarDisponibilidade(reserva.getTipoQuarto(), false);
+    }
+
+    private void atualizarDisponibilidade(int tipoQuarto, boolean disponivel) {
+        for (Quarto quarto : quartos) {
+            if (quarto.getTipo() == tipoQuarto && quarto.isDisponivel()) {
+                quarto.setDisponivel(disponivel);
+                break;
+            }
+        }
+    }
+
+    public void listarQuartos() {
+        for (Quarto quarto : quartos) {
+            String tipoStr;
+            switch (quarto.getTipo()) {
+                case 1: tipoStr = "Solteiro"; break;
+                case 2: tipoStr = "Casal"; break;
+                case 3: tipoStr = "Suíte"; break;
+                default: tipoStr = "Desconhecido"; break;
+            }
+            System.out.println("Quarto " + quarto.getNumero() + " - " + tipoStr + " - " +
+                               (quarto.isDisponivel() ? "Disponível" : "Ocupado"));
+        }
+    }
+
+    public void listarReservas() {
+        for (Reserva reserva : reservas) {
+            System.out.println("Hospede: " + reserva.getNomeHospede() + ", Check-in: " +
+                               reserva.getDataCheckIn() + ", Check-out: " + reserva.getDataCheckOut() +
+                               ", Quartos: " + reserva.getNumeroQuartos() + ", Tipo: " + reserva.getTipoQuarto());
+        }
+    }
+
+    public void realizarCheckIn(int numeroQuarto) {
+        for (Quarto quarto : quartos) {
+            if (quarto.getNumero() == numeroQuarto) {
+                quarto.setDisponivel(false); 
+                System.out.println("Check-in realizado para o quarto " + numeroQuarto);
+                return;
+            }
+        }
+        System.out.println("Quarto não encontrado ou já ocupado.");
+    }
+
+    public void realizarCheckOut(int numeroQuarto) {
+        for (Quarto quarto : quartos) {
+            if (quarto.getNumero() == numeroQuarto) {
+                quarto.setDisponivel(true); 
+                System.out.println("Check-out realizado para o quarto " + numeroQuarto);
+                return;
+            }
+        }
+        System.out.println("Quarto não encontrado.");
+    }
+}
+	
