@@ -8,7 +8,8 @@ public class Quarto {
 
     public Quarto(int numero, int tipo, double precoDiario) {
         if (tipo < 1 || tipo > 3) {
-            throw new IllegalArgumentException("Tipo deve ser 1 (solteiro), 2 (casal) ou 3 (suíte).");
+            System.out.println("Tipo inválido. Deve ser 1 (solteiro), 2 (casal) ou 3 (suíte).");
+            return; 
         }
         this.numero = numero;
         this.tipo = tipo;
